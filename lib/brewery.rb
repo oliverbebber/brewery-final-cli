@@ -1,6 +1,6 @@
 class Brewery
-  attr_accessor :name, :brewery_id, :state, :city
- 
+  attr_accessor :name, :brewery_id, :state, :city, :street, :postal_code, :website_url
+
   @@all = []
   
   def initialize(name:, brewery_id:, state:)
@@ -17,5 +17,5 @@ class Brewery
   def self.find_by_state(state)
     @@all.select { |br| br.state == state }
   end
- 
+
 end
