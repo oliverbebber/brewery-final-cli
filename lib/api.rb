@@ -11,11 +11,15 @@ class API
     end
   end
 
-   def self.get_brewery_details(brewery)
+  def self.get_brewery_details(brewery)
     url = "https://api.openbrewerydb.org/breweries/#{brewery.brewery_id}" # not sure if this is going to work by id...maybe by type: micro, regional, brewpub, large, planning, bar, contract, proprietor
     uri = URI(url)
     response = Net::HTTP.get(uri)
     brew = JSON.parse(response)
-    binding.pry
+    brewery.city = brew["city"]
+    brewery.street = brew["street"]
+    brewery.postal_code = brew["postal_code"]
+    brewery.website_url = brew["website_url"]
+    # binding.pry
   end
 end
