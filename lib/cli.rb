@@ -1,7 +1,7 @@
 # user interaction
 
 class CLI
- 
+
   def start
     puts ""
     puts "      .======================================."
@@ -46,7 +46,7 @@ class CLI
     puts "Here is a list of the breweries we found in #{@state.upcase}."
     puts ""
     brew.each_with_index do |br, i|
-      puts "#{i}. #{br.name}"
+      puts "#{i+1}. #{br.name}"
     end
   end
 end
