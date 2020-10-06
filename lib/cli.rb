@@ -43,7 +43,7 @@ class CLI
   
   def print_brewery(brew)
     puts ""
-    puts "Here is a list of the breweries we found in #{@state.upcase}."
+    puts "Here is a list of the breweries we found in #{@state.split.map(&:capitalize).join(' ')}." # capitalizes 1st letter of each word for @state; ex: new york = New York
     puts ""
     brew.each_with_index do |br, i|
       puts "#{i+1}. #{br.name}"
