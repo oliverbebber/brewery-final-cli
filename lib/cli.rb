@@ -51,7 +51,7 @@ class CLI
       input = gets.chomp.downcase # fixed infinite loop
     end
     puts ""
-    puts "Cheers!" # come back and use beer emoji/ascii for farewell
+    puts "Cheers! \u{1f37b}" # beer emoji 🍻
   end
   
   def print_breweries(br)
