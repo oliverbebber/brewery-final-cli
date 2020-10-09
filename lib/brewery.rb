@@ -1,5 +1,5 @@
 class Brewery
-  attr_accessor :name, :brewery_id, :state, :city, :street, :postal_code, :website_url
+  attr_accessor :name, :brewery_id, :state, :brewery_type, :city, :street, :postal_code, :phone, :website_url
 
   @@all = []
   
