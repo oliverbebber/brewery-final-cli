@@ -18,9 +18,6 @@ class CLI
         brewery = Brewery.find_by_state(@state)[input.to_i - 1]
         API.get_brewery_details(brewery)
         print_brewery(brewery) # displays brewery info
-        # prompt_options
-        # input == gets.chomp.downcase
-      # elsif input == 'state' 
       else
         puts "invalid input" # change message before submitting
       end
@@ -81,19 +78,19 @@ class CLI
     puts ""
     puts "Webpage: #{brewery.website_url}" # if no brewery.website_url - display message
     puts ""
-  end
+  end # after displaying details, the user is asked to type a number for brewery details - REMOVE option
 
   def prompt_options
     puts ""
     puts "Type in a number to see more details" # doesn't need to show after displaying details, unless user returns to 'list' first
-    puts "type 'state' to search breweries in a different state" # needs if statement to allow new state search
-    puts "type 'list' to see the brewery list again" # functioning properly
-    puts "type 'exit' to exit." # functioning properly
+    puts "OR type 'state' to search breweries in a different state" # displays list again
+    puts "OR type 'list' to see the brewery list again" # functioning properly
+    puts "OR type 'exit' to exit." # functioning properly
     puts ""
   end
 
   def farewell_message
     puts ""
-    puts "Cheers! \u{1f37b}" # beer emoji 🍻 - replace with
+    puts "Cheers! \u{1f37b}" # beer emoji 🍻
   end
 end
