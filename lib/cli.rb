@@ -5,9 +5,7 @@ class CLI
   def start
     welcome_message
     @state = gets.chomp.downcase
-    puts ""
     API.fetch_breweries(@state)
-    puts ""
     breweries = Brewery.all
     print_breweries(breweries)
     prompt_options
@@ -20,8 +18,8 @@ class CLI
         brewery = Brewery.find_by_state(@state)[input.to_i - 1]
         API.get_brewery_details(brewery)
         print_brewery(brewery) # displays brewery info
-        prompt_options
-        input == gets.chomp.downcase
+        # prompt_options
+        # input == gets.chomp.downcase
       # elsif input == 'state' 
       else
         puts "invalid input" # change message before submitting
@@ -29,8 +27,7 @@ class CLI
       prompt_options # allows user to have options after getting details
       input = gets.chomp.downcase # fixed infinite loop
     end
-    puts ""
-    puts "Cheers! \u{1f37b}" # beer emoji 🍻
+    farewell_message
   end
   
   def welcome_message
@@ -88,10 +85,15 @@ class CLI
 
   def prompt_options
     puts ""
-    # puts "Type in a number to see more details" -- doesn't need to show after displaying details, unless user returns to 'list' first
-    puts "OR type 'state' to search breweries in a different state" # needs if statement to allow new state search
-    puts "OR type 'list' to see the brewery list again" # functioning properly
-    puts "OR type 'exit' to exit." # functioning properly
+    puts "Type in a number to see more details" # doesn't need to show after displaying details, unless user returns to 'list' first
+    puts "type 'state' to search breweries in a different state" # needs if statement to allow new state search
+    puts "type 'list' to see the brewery list again" # functioning properly
+    puts "type 'exit' to exit." # functioning properly
     puts ""
+  end
+
+  def farewell_message
+    puts ""
+    puts "Cheers! \u{1f37b}" # beer emoji 🍻 - replace with
   end
 end
