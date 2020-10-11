@@ -4,6 +4,8 @@
 
 Brewery-final-cli is my first project while in Flatiron School's Software Engineering cohort. This CLI will to search for breweries by state and obtain details for each.
 
+Clone this repo then run the program by using 'ruby bin/start' in your terminal.
+
 ## API Reference
 
 [Open Brewery DB](https://www.openbrewerydb.org/)
