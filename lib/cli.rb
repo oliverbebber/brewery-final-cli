@@ -4,13 +4,9 @@ class CLI
 
   def start
     welcome_message
-    @state = gets.chomp.downcase
-    API.fetch_breweries(@state)
-    breweries = Brewery.all
-    print_breweries(breweries)
+    prompt_state
     prompt_options
     input = gets.chomp.downcase
-    # binding.pry
     while input != 'exit' do # make sure there are no dup objects
       if input == 'list'
         print_breweries(Brewery.find_by_state(@state))
@@ -26,30 +22,6 @@ class CLI
     end
     farewell_message
   end
-  
-  def welcome_message
-    puts ""
-    puts "      .======================================."
-    puts "      |                                      |"
-    puts "      |C|||C|||C||| C|||C|||C|||C|||C|||C||| |"
-    puts "      | ||| ||| |||  ||| ||| ||| ||| ||| ||| |"
-    puts "      '======================================'"
-    puts "      Welcome to the ultimate brewery directory"
-    puts "                                              "
-    puts "           .:.                              "
-    puts "          C|||'                            "
-    puts "        ___|||______________________________"
-    puts "       [____________________________________]"
-    puts "        |   ____    ____    ____    ____   | "
-    puts "        |  (____)  (____)  (____)  (____)  | "
-    puts "        |  |    |  |    |  |    |  |    |  | "
-    puts "        |  |____|  |____|  |____|  |____|  | "
-    puts "        |  I====I  I====I  I====I  I====I  | "
-    puts "        |   |  |    |  |    |  |    |  |   | "
-    puts ""
-    puts "            Search for breweries by state.   "
-    puts ""
-  end # come back and add color
 
   def print_breweries(br)
     puts ""
@@ -80,14 +52,45 @@ class CLI
     puts ""
   end # after displaying details, the user is asked to type a number for brewery details - REMOVE option
 
+  def prompt_state
+    puts "           Search for breweries by state."
+    puts ""
+    @state = gets.chomp.downcase
+    API.fetch_breweries(@state)
+    breweries = Brewery.all
+    print_breweries(breweries)
+  end
+
   def prompt_options
     puts ""
     puts "Type in a number to see more details" # doesn't need to show after displaying details, unless user returns to 'list' first
-    puts "OR type 'state' to search breweries in a different state" # displays list again
-    puts "OR type 'list' to see the brewery list again" # functioning properly
+    puts "OR type 'state' to search breweries in a different state" # displays list again, needs to prompt for state selection
+    puts "OR type 'list' to see the brewery list again" # needs to show AFTER details
     puts "OR type 'exit' to exit." # functioning properly
     puts ""
   end
+
+  def welcome_message
+    puts ""
+    puts "      .======================================."
+    puts "      |                                      |"
+    puts "      |C|||C|||C||| C|||C|||C|||C|||C|||C||| |"
+    puts "      | ||| ||| |||  ||| ||| ||| ||| ||| ||| |"
+    puts "      '======================================'"
+    puts "      Welcome to the ultimate brewery directory"
+    puts "                                              "
+    puts "           .:.                              "
+    puts "          C|||'                            "
+    puts "        ___|||______________________________"
+    puts "       [____________________________________]"
+    puts "        |   ____    ____    ____    ____   | "
+    puts "        |  (____)  (____)  (____)  (____)  | "
+    puts "        |  |    |  |    |  |    |  |    |  | "
+    puts "        |  |____|  |____|  |____|  |____|  | "
+    puts "        |  I====I  I====I  I====I  I====I  | "
+    puts "        |   |  |    |  |    |  |    |  |   | "
+    puts ""
+  end # come back and add color
 
   def farewell_message
     puts ""
